@@ -1,0 +1,130 @@
+
+/* ==========================================================
+   ANIMASI SCROLL - Kiting's Barbershop
+   Dipakai bersama public/js/animations.js
+   ========================================================== */
+
+/* Scroll halus saat klik link anchor */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ----------------------------------------------------------
+   1. REVEAL: elemen muncul saat masuk layar
+   ---------------------------------------------------------- */
+
+.js [data-reveal],
+.js .reveal {
+    opacity: 0;
+}
+
+/* Elemen setelah terdeteksi masuk layar */
+.js [data-reveal].is-visible,
+.js .reveal.is-visible {
+    opacity: 1;
+
+    animation: reveal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1)
+        var(--reveal-delay, 0ms) backwards;
+}
+
+/* Gerakan awal animasi */
+@keyframes reveal-in {
+
+    from {
+        opacity: 0;
+        transform: var(--reveal-from, translate3d(0, 32px, 0));
+    }
+
+}
+
+/* ----------------------------------------------------------
+   2. JENIS ANIMASI
+   ---------------------------------------------------------- */
+
+/* Muncul dari bawah */
+[data-reveal="up"],
+.reveal {
+    --reveal-from: translate3d(0, 32px, 0);
+}
+
+/* Muncul dari kiri */
+[data-reveal="left"] {
+    --reveal-from: translate3d(-48px, 0, 0);
+}
+
+/* Muncul dari kanan */
+[data-reveal="right"] {
+    --reveal-from: translate3d(48px, 0, 0);
+}
+
+/* Muncul dengan efek zoom */
+[data-reveal="zoom"] {
+    --reveal-from: scale(0.92);
+}
+
+/* Muncul perlahan tanpa perpindahan */
+[data-reveal="fade"] {
+    --reveal-from: none;
+}
+
+/* ----------------------------------------------------------
+   3. NAVBAR BERUBAH SAAT SCROLL
+   ---------------------------------------------------------- */
+
+[data-site-header] {
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+[data-site-header].is-scrolled {
+    background-color: rgba(0, 0, 0, 0.9);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+/* ----------------------------------------------------------
+   4. SCROLL PROGRESS
+   ---------------------------------------------------------- */
+
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    height: 3px;
+    z-index: 60;
+
+    background: #F2B95C;
+
+    transform: scaleX(0);
+    transform-origin: 0 50%;
+
+    pointer-events: none;
+}
+
+/* ----------------------------------------------------------
+   5. HORMATI PENGATURAN REDUCED MOTION
+   ---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    .js [data-reveal],
+    .js .reveal {
+        opacity: 1;
+    }
+
+    .js [data-reveal].is-visible,
+    .js .reveal.is-visible {
+        animation: none;
+    }
+
+    [data-site-header] {
+        transition: none;
+    }
+
+}

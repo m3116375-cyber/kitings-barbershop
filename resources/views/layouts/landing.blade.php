@@ -111,7 +111,9 @@
         }
     </style>
 
-    @stack('head')
+    <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+
+@stack('head')
 </head>
 
 <body class="customer-site font-sans text-white bg-ink overflow-x-hidden">
@@ -122,7 +124,7 @@
     <div class="min-h-screen @yield('overlay', 'bg-gradient-to-r from-black/85 via-black/60 to-black/30')">
 
         {{-- NAVBAR --}}
-        <header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/15">
+        <header data-site-header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/15">
 
             <div class="max-w-6xl mx-auto px-4 h-[72px] flex items-center justify-between gap-4">
 
@@ -208,29 +210,8 @@
     lucide.createIcons();
 </script>
 
-{{-- ANIMASI SCROLL REVEAL --}}
-<script>
-document.addEventListener('DOMContentLoaded', function () {
 
-    const cards = document.querySelectorAll('.customer-site .reveal');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.15
-    });
-
-    cards.forEach(card => {
-        observer.observe(card);
-    });
-
-});
-</script>
+<script src="{{ asset('js/animations.js') }}"></script>
 
 @stack('scripts')
 
