@@ -13,14 +13,14 @@ html {
    1. REVEAL: elemen muncul saat masuk layar
    ---------------------------------------------------------- */
 
-.js [data-reveal],
-.js .reveal {
+[data-reveal],
+.reveal {
     opacity: 0;
 }
 
 /* Elemen setelah terdeteksi masuk layar */
-.js [data-reveal].is-visible,
-.js .reveal.is-visible {
+[data-reveal].is-visible,
+.reveal.is-visible {
     opacity: 1;
 
     animation: reveal-in 0.8s cubic-bezier(0.22, 1, 0.36, 1)
@@ -127,4 +127,74 @@ html {
         transition: none;
     }
 
+}
+
+
+/* =========================================
+   KITING'S BARBERSHOP - LANDING ANIMATIONS
+   ========================================= */
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(35px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hero-animation {
+    animation: heroFadeUp 1s ease-out both;
+}
+
+.hero-animation-delay {
+    animation: heroFadeUp 1s ease-out 0.25s both;
+}
+
+.hero-buttons {
+    animation: heroFadeUp 1s ease-out 0.45s both;
+}
+
+@keyframes heroFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Efek hover kartu */
+.service-card,
+.product-card {
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.service-card:hover,
+.product-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(245, 183, 72, 0.55);
+}
+
+/* Efek tombol */
+.hero-button {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+.hero-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(245, 183, 72, 0.18);
 }

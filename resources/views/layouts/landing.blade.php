@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -45,6 +45,7 @@
 
         /* Efek hover tombol */
         @media (hover: hover) {
+
             .customer-site main button:hover:not(:disabled),
             .customer-site main a[class*="rounded"][class*="bg-"]:hover,
             .customer-site main a[class*="rounded"][class*="border-"]:hover {
@@ -71,6 +72,7 @@
 
         /* Efek hover card */
         @media (hover: hover) {
+
             .customer-site main section[class*="bg-black/60"]:hover,
             .customer-site main div[class*="bg-black/60"]:hover {
                 transform: translateY(-3px);
@@ -81,6 +83,7 @@
 
         /* Menghormati pengaturan reduced motion */
         @media (prefers-reduced-motion: reduce) {
+
             .customer-site main button,
             .customer-site main a,
             .customer-site main section,
@@ -89,12 +92,13 @@
                 transform: none !important;
             }
         }
-                /* ANIMASI MUNCUL SAAT SCROLL */
+
+        /* ANIMASI MUNCUL SAAT SCROLL */
         .customer-site .reveal {
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 0.6s ease,
-                        transform 0.6s ease;
+                transform 0.6s ease;
         }
 
         .customer-site .reveal.show {
@@ -111,58 +115,58 @@
         }
     </style>
 
-    <link rel="stylesheet" href="{{ asset('css/animations.css') }}">
+    @vite('resources/css/animations.css')
 
-@stack('head')
+    @stack('head')
 </head>
 
 <body class="customer-site font-sans text-white bg-ink overflow-x-hidden">
 
-<div class="min-h-screen bg-cover bg-center bg-fixed"
-     style="background-image: url('{{ asset(trim($__env->yieldContent('bg')) ?: 'images/hero.jpg') }}')">
+    <div class="min-h-screen bg-cover bg-center bg-fixed"
+        style="background-image: url('{{ asset(trim($__env->yieldContent('bg')) ?: 'images/hero.jpg') }}')">
 
-    <div class="min-h-screen @yield('overlay', 'bg-gradient-to-r from-black/85 via-black/60 to-black/30')">
+        <div class="min-h-screen @yield('overlay', 'bg-gradient-to-r from-black/85 via-black/60 to-black/30')">
 
-        {{-- NAVBAR --}}
-        <header data-site-header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/15">
+            {{-- NAVBAR --}}
+            <header data-site-header class="sticky top-0 z-50 bg-black/70 backdrop-blur border-b border-white/15">
 
-            <div class="max-w-6xl mx-auto px-4 h-[72px] flex items-center justify-between gap-4">
+                <div class="max-w-6xl mx-auto px-4 h-[72px] flex items-center justify-between gap-4">
 
-                <a href="{{ route('home') }}"
-                   class="flex items-center gap-3 text-gold font-semibold tracking-wide">
+                    <a href="{{ route('home') }}"
+                        class="flex items-center gap-3 text-gold font-semibold tracking-wide">
 
-                    <i data-lucide="scissors" class="w-7 h-7"></i>
-                    KITING'S BARBERSHOP
+                        <i data-lucide="scissors" class="w-7 h-7"></i>
+                        KITING'S BARBERSHOP
 
-                </a>
-
-                <nav class="flex items-center gap-4 text-sm">
-
-                    <a href="{{ route('home') }}" class="hover:text-gold">
-                        Beranda
                     </a>
 
-                    <a href="{{ route('catalog') }}" class="hover:text-gold">
-                        Layanan &amp; Produk
-                    </a>
+                    <nav class="flex items-center gap-4 text-sm">
 
-                    @auth
+                        <a href="{{ route('home') }}" class="hover:text-gold">
+                            Beranda
+                        </a>
+
+                        <a href="{{ route('catalog') }}" class="hover:text-gold">
+                            Layanan &amp; Produk
+                        </a>
+
+                        @auth
 
                         @if(auth()->user()->isPelanggan())
 
-                            <a href="{{ route('booking.create') }}" class="hover:text-gold">
-                                Booking
-                            </a>
+                        <a href="{{ route('booking.create') }}" class="hover:text-gold">
+                            Booking
+                        </a>
 
-                            <a href="{{ route('orders.index') }}" class="hover:text-gold">
-                                Pesanan Saya
-                            </a>
+                        <a href="{{ route('orders.index') }}" class="hover:text-gold">
+                            Pesanan Saya
+                        </a>
 
                         @else
 
-                            <a href="{{ auth()->user()->homeUrl() }}" class="hover:text-gold">
-                                Panel {{ ucfirst(auth()->user()->role) }}
-                            </a>
+                        <a href="{{ auth()->user()->homeUrl() }}" class="hover:text-gold">
+                            Panel {{ ucfirst(auth()->user()->role) }}
+                        </a>
 
                         @endif
 
@@ -174,46 +178,47 @@
                             </button>
                         </form>
 
-                    @else
+                        @else
 
                         <a href="{{ route('login') }}"
-                           class="px-4 py-1.5 rounded-full border border-white/70 hover:border-gold hover:text-gold">
+                            class="px-4 py-1.5 rounded-full border border-white/70 hover:border-gold hover:text-gold">
                             Login
                         </a>
 
                         <a href="{{ route('register') }}"
-                           class="px-4 py-1.5 rounded-full bg-gold text-black font-semibold hover:opacity-90">
+                            class="px-4 py-1.5 rounded-full bg-gold text-black font-semibold hover:opacity-90">
                             Daftar
                         </a>
 
-                    @endauth
+                        @endauth
 
-                </nav>
+                    </nav>
 
-            </div>
-        </header>
+                </div>
+            </header>
 
-        {{-- KONTEN --}}
-        <main class="max-w-6xl mx-auto px-4 pb-12">
+            {{-- KONTEN --}}
+            <main class="max-w-6xl mx-auto px-4 pb-12">
 
-            @include('partials.flash')
+                @include('partials.flash')
 
-            @yield('content')
+                @yield('content')
 
-        </main>
+            </main>
 
+        </div>
     </div>
-</div>
 
-<script src="https://unpkg.com/lucide@latest"></script>
-<script>
-    lucide.createIcons();
-</script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        lucide.createIcons();
+    </script>
 
 
-<script src="{{ asset('js/animations.js') }}"></script>
+    @vite('resources/js/animations.js')
 
-@stack('scripts')
+    @stack('scripts')
 
 </body>
+
 </html>
